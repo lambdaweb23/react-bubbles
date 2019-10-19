@@ -37,8 +37,7 @@ const ColorList = ({ colors, updateColors, history }) => {
     axiosWithAuth()
       .delete(`/api/colors/${color.id}`)
       .then(res => {
-        updateColors(res.data);
-        history.push('/protected');
+        updateColors(colors.filter(col => res.data !== col.id))
       })
       .catch(err => console.log(err.response));
   };
